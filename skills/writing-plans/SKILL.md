@@ -11,6 +11,10 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
+## Sequential Thinking
+
+For complex decomposition decisions, architectural trade-offs, or multi-step reasoning about file structure and task ordering, use the sequential thinking MCP tool (`mcp__sequentialthinking__sequentialthinking`) to think through the problem step by step before committing to a plan structure.
+
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
@@ -33,14 +37,40 @@ Before defining tasks, map out which files will be created or modified and what 
 
 This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
 
+## Design Principles (Philosophy of Software Design)
+
+All code in plan tasks MUST follow these principles. Code blocks that violate them are plan failures.
+
+### Comment Best Practices
+- Comments describe things that aren't obvious from the code — the *why*, not the *what*.
+- Every module/class gets a high-level comment explaining its purpose and how it fits into the system.
+- Interface comments describe what the method does, not how it does it.
+- Never write "add comments later" — doc comments are part of the code, not a follow-up step.
+
+### XML Doc Comments for Public Members
+All publicly visible members (classes, methods, properties, enums) must have language-appropriate doc comments inline in plan code blocks:
+- **C#:** `/// <summary>` XML doc comments
+- **TypeScript/JavaScript:** JSDoc (`/** */`)
+- **Python:** docstrings (`"""..."""`)
+
+### Deep Modules
+- Modules should provide simple interfaces that hide complex implementations.
+- A deep module does a lot of work behind a small API surface.
+- When planning file structure and interfaces, favor fewer, more powerful abstractions over many shallow ones.
+- If a module's interface is as complex as its implementation, the module is too shallow — redesign it.
+
+### Define Errors Out of Existence
+- Design APIs so error conditions can't arise in the first place.
+- Prefer designs where the caller can't pass invalid input over designs that validate and throw.
+- Use typed enums instead of arbitrary strings. Use builder patterns that enforce required fields at compile time.
+- If you find yourself writing extensive input validation, reconsider the API shape.
+
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
 - "Write the failing test" - step
-- "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
+- "Refactor if needed" - step
 
 ## Plan Document Header
 
@@ -78,29 +108,16 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
-
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
-
-- [ ] **Step 3: Write minimal implementation**
+- [ ] **Step 2: Write minimal implementation**
 
 ```python
 def function(input):
     return expected
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [ ] **Step 3: Refactor if needed**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
+Extract common patterns, improve names, remove duplication. Keep tests green.
 ````
 
 ## No Placeholders
@@ -116,8 +133,7 @@ Every step must contain the actual content an engineer needs. These are **plan f
 ## Remember
 - Exact file paths always
 - Complete code in every step — if a step changes code, show the code
-- Exact commands with expected output
-- DRY, YAGNI, TDD, frequent commits
+- DRY, YAGNI, TDD
 
 ## Self-Review
 

@@ -1,19 +1,19 @@
 {
-  "name": "superpowers-dev",
-  "description": "Development marketplace for Superpowers core skills library",
+  "name": "superpowers-winprn",
+  "description": "Customized skills library with Philosophy of Software Design principles and sequential thinking",
   "owner": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com"
+    "name": "Man Ly",
+    "email": "man.ly@orangelogic.com"
   },
   "plugins": [
     {
-      "name": "superpowers",
-      "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
-      "version": "5.0.6",
+      "name": "superpowers-winprn",
+      "description": "Customized skills library for Claude Code: TDD, debugging, collaboration patterns, Philosophy of Software Design principles, and sequential thinking",
+      "version": "1.0.0",
       "source": "./",
       "author": {
-        "name": "Jesse Vincent",
-        "email": "jesse@fsck.com"
+        "name": "Man Ly",
+        "email": "man.ly@orangelogic.com"
       }
     }
   ]

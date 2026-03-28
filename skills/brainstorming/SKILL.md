@@ -120,6 +120,7 @@ After writing the spec document, look at it with fresh eyes:
 2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
 3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
 4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
+5. **Complex reasoning check:** For specs with intricate logic, multi-system interactions, or non-obvious trade-offs, use the sequential thinking MCP tool (`mcp__sequentialthinking__sequentialthinking`) to systematically verify consistency and completeness.
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
@@ -143,6 +144,7 @@ Wait for the user's response. If they request changes, make them and re-run the 
 - **Explore alternatives** - Always propose 2-3 approaches before settling
 - **Incremental validation** - Present design, get approval before moving on
 - **Be flexible** - Go back and clarify when something doesn't make sense
+- **Sequential thinking for complexity** - For complex design decisions, trade-off analysis, or multi-step reasoning, use the sequential thinking MCP tool (`mcp__sequentialthinking__sequentialthinking`) to think through the problem step by step before presenting conclusions
 
 ## Visual Companion
 
