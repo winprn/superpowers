@@ -84,8 +84,8 @@ After all items reach `done`:
 
 ## Integration
 
-**Required workflow skills:**
-- **superpowers:using-git-worktrees** — REQUIRED: set up isolated workspace before starting.
+**Workflow skills:**
+- **Isolated workspace — OPTIONAL.** Default: create a fresh feature branch off main (`git checkout -b feature/<topic>`) and work in-place. Use `superpowers:using-git-worktrees` only when you specifically need an isolated working tree (e.g., to keep the current workspace untouched while a long task runs, or to run multiple plans in parallel without stashing). A branch is preferred unless the user asks for a worktree.
 - **superpowers:writing-plans** — creates the plan (single file or directory) this skill executes.
 - **superpowers:finishing-a-development-branch** — completes development after all tasks.
 

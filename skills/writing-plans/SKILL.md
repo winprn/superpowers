@@ -13,7 +13,7 @@ Assume implementers are skilled developers who know almost nothing about this to
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+**Context:** This is typically run on a dedicated feature branch off main. A worktree is optional — use one only if you specifically need to keep the current workspace untouched or to plan multiple specs in parallel.
 
 ## REQUIRED SUB-SKILL: decomposing-specs
 

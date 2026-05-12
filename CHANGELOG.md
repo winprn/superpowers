@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0] - 2026-05-12
+
+### Changed
+
+- **using-git-worktrees, executing-plans, subagent-driven-development, writing-plans**: Worktrees are now OPTIONAL. The default workflow uses a regular feature branch off main. Worktrees are reserved for cases where isolation is genuinely needed (parallel plans, untouched workspace) or when the user explicitly asks for one.
+
+### Files touched
+
+- `skills/using-git-worktrees/SKILL.md`
+- `skills/executing-plans/SKILL.md`
+- `skills/subagent-driven-development/SKILL.md`
+- `skills/writing-plans/SKILL.md`
+
 ## [1.2.0] - 2026-05-12
 
 ### Added

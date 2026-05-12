@@ -1,6 +1,6 @@
 ---
 name: using-git-worktrees
-description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification
+description: Use only when the user explicitly asks for a worktree or when feature work genuinely needs isolation from the current workspace (e.g., running multiple plans in parallel) - a plain feature branch is the default; this skill is opt-in
 ---
 
 # Using Git Worktrees
@@ -8,6 +8,14 @@ description: Use when starting feature work that needs isolation from current wo
 ## Overview
 
 Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
+
+**This skill is OPTIONAL.** The default workflow uses a regular feature branch (`git checkout -b feature/<topic>`) on the existing working tree. Reach for a worktree only when:
+
+- The user explicitly asks for one.
+- You need to keep the current workspace untouched while a long task runs.
+- You are running multiple plans in parallel and need separate working trees.
+
+If none of the above apply, skip this skill and just create a branch.
 
 **Core principle:** Systematic directory selection + safety verification = reliable isolation.
 
