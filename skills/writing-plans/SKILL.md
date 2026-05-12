@@ -15,9 +15,18 @@ Assume implementers are skilled developers who know almost nothing about this to
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
+## REQUIRED SUB-SKILL: decomposing-specs
+
+Before doing anything else in this skill, you MUST have run `superpowers-winprn:decomposing-specs` against the spec and produced its decomposition table (ids, slugs, depends_on, touches, one-line summaries).
+
+- If you have not run it yet, invoke it now and resume here only after its table is produced.
+- If you ran it and produced a table, use that table verbatim as the manifest seed below. Do not re-enumerate items here — that is decomposing-specs's job, and re-doing it leads to the exact failure mode (collapsing multi-item specs into one plan) that decomposing-specs exists to prevent.
+
+**Violating the letter of this requirement is violating its spirit.** Don't "quickly identify items inline" — that is the rationalization the sub-skill exists to block.
+
 ## Sequential Thinking
 
-For decomposition decisions, dependency inference, and cross-plan consistency reasoning, use the sequential thinking MCP tool (`mcp__sequentialthinking__sequentialthinking`) to think through the problem step by step before committing to a structure.
+For dependency refinement and cross-plan consistency reasoning, use the sequential thinking MCP tool (`mcp__sequentialthinking__sequentialthinking`) to think through the problem step by step before committing to a structure. (Item enumeration itself has already happened in decomposing-specs.)
 
 ## Scope Check
 
@@ -25,10 +34,10 @@ If the spec covers multiple independent subsystems that should have been broken 
 
 ## Decide: Single File or Directory
 
-**Read the spec and identify items.** An item is an implementable unit that produces working, testable software on its own — typically a numbered top-level section or feature in the spec.
+Use the row count from the decomposing-specs table:
 
-- **1 item** → write a single plan file at `docs/superpowers/plans/YYYY-MM-DD-<topic>.md` using the inline flow below.
-- **2+ items** → use the directory flow with parallel plan-writer subagents.
+- **1 row** (with the single-item gate answered) → write a single plan file at `docs/superpowers/plans/YYYY-MM-DD-<topic>.md` using the inline flow below.
+- **2+ rows** → use the directory flow with parallel plan-writer subagents. The decomposition table IS the manifest seed — copy its rows into the README.md frontmatter directly.
 
 User preferences for plan location override these defaults.
 
@@ -46,9 +55,9 @@ docs/superpowers/plans/YYYY-MM-DD-<topic>/
   ...
 ```
 
-### Step 1: Decompose and write the manifest
+### Step 1: Write the manifest from the decomposition table
 
-Identify items, infer dependencies, and write `README.md`. The frontmatter is the source of truth:
+Copy the rows from the decomposing-specs table into `README.md` frontmatter. Refine `depends_on` and `touches` if you discover gaps while writing, but do not re-enumerate items here. The frontmatter is the source of truth:
 
 ```markdown
 ---

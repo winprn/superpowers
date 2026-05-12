@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0] - 2026-05-12
+
+### Added
+
+- **decomposing-specs** (new skill): Forces explicit item enumeration before plan writing. Counters the default failure mode where agents read a multi-item spec, classify it as "one feature," and collapse it into a single plan file. Output is a decomposition table (id/slug/depends_on/touches) that seeds the writing-plans manifest directly.
+
+### Changed
+
+- **writing-plans**: Now requires `decomposing-specs` as a sub-skill before its "single file vs directory" decision. Step 1 of the directory flow consumes the decomposition table instead of re-enumerating items.
+
+### Files touched
+
+- `skills/decomposing-specs/SKILL.md` (new)
+- `skills/writing-plans/SKILL.md`
+
 ## [1.1.0] - 2026-05-12
 
 ### Changed
