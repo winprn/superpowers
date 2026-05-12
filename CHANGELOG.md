@@ -1,5 +1,25 @@
 # Changelog
 
+## [Unreleased] - 2026-05-12
+
+### Changed
+
+- **writing-plans**: Multi-item specs now produce a **plan directory** (`docs/superpowers/plans/YYYY-MM-DD-<topic>/`) with a YAML manifest and per-item plan files. A controller dispatches plan-writer subagents in **topological waves** so independent items are planned in parallel. Adds cross-plan consistency review for type/signature drift. Single-item specs unchanged.
+- **executing-plans**: Now detects plan directories and processes items in topological order based on the manifest's `depends_on` graph (sequential, since this skill assumes no subagents).
+- **subagent-driven-development**: For plan directories, dispatches implementer subagents in **parallel waves** with a file-ownership guard that prevents concurrent work on overlapping `touches` paths. Per-item spec and code-quality reviewers now run in parallel. Final cross-cutting code review at the end.
+
+### Added
+
+- `skills/writing-plans/plan-writer-prompt.md`: subagent prompt template for per-item plan writing.
+
+### Files touched
+
+- `skills/writing-plans/SKILL.md`
+- `skills/writing-plans/plan-writer-prompt.md` (new)
+- `skills/executing-plans/SKILL.md`
+- `skills/subagent-driven-development/SKILL.md`
+- `docs/superpowers/specs/2026-05-12-parallel-plan-writing-design.md` (design spec)
+
 ## [5.0.5] - 2026-03-17
 
 ### Fixed
